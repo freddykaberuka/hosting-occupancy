@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import Header from "./component/Header";
 import guestData from './guests.json'
 
 function App() {
@@ -36,7 +37,8 @@ function App() {
     setTotalRevenue(premiumGuests.reduce((acc, guest) => acc + 100, 0) + economyGuests.reduce((acc, guest) => acc + 50, 0));
   };
   return (
-    <div className="App">
+    <>
+    <Header />
       <form onSubmit={handleFormSubmit}>
         <label>
           Premium Rooms:
@@ -55,7 +57,7 @@ function App() {
         <p>Economy Occupancy: {economyOccupancy}</p>
         <p>Total Revenue: {totalRevenue}</p>
       </div>
-    </div>
+    </>
   );
 }
 
