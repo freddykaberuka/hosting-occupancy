@@ -20,7 +20,7 @@ function App() {
   };
   return (
     <div className="App">
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <label>
           Premium Rooms:
           <input type="number" value={numPremiumRooms} onChange={e => setNumPremiumRooms(parseInt(e.target.value))}/>
@@ -28,7 +28,7 @@ function App() {
         <br />
         <label>
           Economy Rooms:
-          <input type="number" value={numEconomyRooms} onChange={e => setNumPremiumRooms(parseInt(e.target.value))}/>
+          <input type="number" value={numEconomyRooms} onChange={e => setNumEconomyRooms(parseInt(e.target.value))}/>
         </label>
         <br />
         <button type="submit">Optimize</button>
