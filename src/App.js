@@ -9,10 +9,27 @@ function App() {
   const [economyOccupancy, setEconomyOccupancy] = useState(0);
   const [totalRevenue, setTotalRevenue] = useState(0);
   
+  const assignRooms = (guests, premiumRooms, economyRooms) => {
+    const premiumGuests = [];
+    const economyGuests = [];
+    const sortedGuests = guests.slice().sort((a, b) => b - a);
+
+    sortedGuests.forEach(guest => {
+      if (guest >= 100 && premiumRooms > 0) {
+        premiumGuests.push(guest);
+        premiumRooms--;
+      } else if (guest < 100 && economyRooms > 0) {
+        economyGuests.push(guest);
+        economyRooms--;
+      }
+    });
+    return [premiumGuests, economyGuests];
+  };
+
   const handleFormSubmit = e => {
     e.preventDefault();
 
-    const [premiumGuests, economyGuests] = [guestData, numPremiumRooms, numEconomyRooms];
+    const [premiumGuests, economyGuests] = assignRooms(guestData, numPremiumRooms, numEconomyRooms);
 
     setPremiumOccupancy(premiumGuests.length);
     setEconomyOccupancy(economyGuests.length);
