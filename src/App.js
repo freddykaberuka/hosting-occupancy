@@ -2,6 +2,18 @@ import React, { useState } from "react";
 import "./App.css";
 import Header from "./component/Header";
 import guestData from './guests.json'
+import { assignRooms} from './helpers/helperFunction'
+
+function FormField({ label, value, onChange }) {
+  return (
+    <div>
+      <label>
+        {label}:
+        <input type="number" value={value} onChange={onChange}/>
+      </label>
+    </div>
+  );
+}
 
 function App() {
   const [numPremiumRooms, setNumPremiumRooms] = useState(0);
@@ -10,31 +22,22 @@ function App() {
   const [economyOccupancy, setEconomyOccupancy] = useState(0);
   const [totalRevenue, setTotalRevenue] = useState(0);
   
-  const assignRooms = (guests, premiumRooms, economyRooms) => {
-    const premiumGuests = [];
-    const economyGuests = [];
-    const sortedGuests = guests.slice().sort((a, b) => b - a);
 
-    sortedGuests.forEach(guest => {
-      if (guest >= 100 && premiumRooms > 0) {
-        premiumGuests.push(guest);
-        premiumRooms--;
-      } else if (guest < 100 && economyRooms > 0) {
-        economyGuests.push(guest);
-        economyRooms--;
-      }
-    });
-    return [premiumGuests, economyGuests];
-  };
 
   const handleFormSubmit = e => {
     e.preventDefault();
 
     const [premiumGuests, economyGuests] = assignRooms(guestData, numPremiumRooms, numEconomyRooms);
 
-    setPremiumOccupancy(premiumGuests.length);
-    setEconomyOccupancy(economyGuests.length);
-    setTotalRevenue(premiumGuests.reduce((acc, guest) => acc + 100, 0) + economyGuests.reduce((acc, guest) => acc + 50, 0));
+    const premiumOccupancyCount = premiumGuests.length;
+    const economyOccupancyCount = economyGuests.length;
+    const premiumRevenue = premiumGuests.reduce((acc, guest) => acc + 100, 0);
+    const economyRevenue = economyGuests.reduce((acc, guest) => acc + 50, 0);
+    const totalRevenueValue = premiumRevenue + economyRevenue;
+
+    setPremiumOccupancy(premiumOccupancyCount);
+    setEconomyOccupancy(economyOccupancyCount);
+    setTotalRevenue(totalRevenueValue);
   };
   return (
     <>
@@ -42,16 +45,10 @@ function App() {
     <div className="admin-dash">
       <form onSubmit={handleFormSubmit} className="form-submit">
         <div>
-        <label>
-          Premium Rooms:
-          <input type="number" value={numPremiumRooms} onChange={e => setNumPremiumRooms(parseInt(e.target.value))}/>
-        </label>
+        <FormField label="Premium Rooms" value={numPremiumRooms} onChange={e => setNumPremiumRooms(parseInt(e.target.value))}/>
         </div>
         <div>
-        <label>
-          Economy Rooms:
-          <input type="number" value={numEconomyRooms} onChange={e => setNumEconomyRooms(parseInt(e.target.value))}/>
-        </label>
+         <FormField label="Economy Rooms" value={numEconomyRooms} onChange={e => setNumEconomyRooms(parseInt(e.target.value))}/>
         </div>
         <div>
         <button type="submit" className="optmize">Optimize</button>
