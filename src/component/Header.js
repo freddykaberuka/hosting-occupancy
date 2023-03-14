@@ -4,11 +4,11 @@ import Search from './Search'
 const Header=() =>{
   return (
     <>
-    <div>
-        <div>
+    <div className="top-header">
+        <div className="logo">
             <h2>SMART HOST</h2>
         </div>
-        <div>
+        <div className="links">
           <ul>
             <li>
               Guest 1

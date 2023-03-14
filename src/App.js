@@ -39,23 +39,38 @@ function App() {
   return (
     <>
     <Header />
-      <form onSubmit={handleFormSubmit}>
+    <div className="admin-dash">
+      <form onSubmit={handleFormSubmit} className="form-submit">
+        <div>
         <label>
           Premium Rooms:
           <input type="number" value={numPremiumRooms} onChange={e => setNumPremiumRooms(parseInt(e.target.value))}/>
         </label>
-        <br />
+        </div>
+        <div>
         <label>
           Economy Rooms:
           <input type="number" value={numEconomyRooms} onChange={e => setNumEconomyRooms(parseInt(e.target.value))}/>
         </label>
-        <br />
-        <button type="submit">Optimize</button>
+        </div>
+        <div>
+        <button type="submit" className="optmize">Optimize</button>
+        </div>
       </form>
-      <div>
-        <p>Premium Occupancy: {premiumOccupancy}</p>
-        <p>Economy Occupancy: {economyOccupancy}</p>
-        <p>Total Revenue: {totalRevenue}</p>
+      <div className="occupancies">
+        <div class="card">
+          <div class="img">PR</div>
+          <p>Premium Occupancy: {premiumOccupancy}</p>
+        </div>
+        <div class="card">
+          <div class="img">ER</div>
+          <p>Economy Occupancy: {economyOccupancy}</p>
+        </div>
+        <div class="card">
+          <div class="img">TR</div>
+          <p>Total Revenue: {totalRevenue}</p>
+        </div>
+      </div>
       </div>
     </>
   );
