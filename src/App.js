@@ -55,16 +55,16 @@ function App() {
         </div>
       </form>
       <div className="occupancies">
-        <div class="card">
-          <div class="img">PR</div>
+        <div className="card">
+          <div className="img">PR</div>
           <p>Premium Occupancy: {premiumOccupancy}</p>
         </div>
-        <div class="card">
-          <div class="img">ER</div>
+        <div className="card">
+          <div className="img">ER</div>
           <p>Economy Occupancy: {economyOccupancy}</p>
         </div>
-        <div class="card">
-          <div class="img">TR</div>
+        <div className="card">
+          <div className="img">TR</div>
           <p>Total Revenue: {totalRevenue}</p>
         </div>
       </div>
