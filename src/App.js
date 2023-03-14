@@ -4,7 +4,7 @@ import Header from "./component/Header";
 import guestData from './guests.json'
 import { assignRooms} from './helpers/helperFunction'
 
-function FormField({ label, value, onChange }) {
+const FormField=({ label, value, onChange }) => {
   return (
     <div>
       <label>
@@ -15,7 +15,7 @@ function FormField({ label, value, onChange }) {
   );
 }
 
-function App() {
+const App=()=> {
   const [numPremiumRooms, setNumPremiumRooms] = useState(0);
   const [numEconomyRooms, setNumEconomyRooms] = useState(0);
   const [premiumOccupancy, setPremiumOccupancy] = useState(0);
