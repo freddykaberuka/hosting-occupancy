@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./component/Header";
 import guestData from './guests.json'
 import { assignRooms} from './helpers/helperFunction'
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const FormField=({ label, value, onChange }) => {
   return (
@@ -41,7 +42,9 @@ const App=()=> {
   };
   return (
     <>
+    <Router>
     <Header />
+    </Router>
     <div className="admin-dash">
       <form onSubmit={handleFormSubmit} className="form-submit">
         <div>

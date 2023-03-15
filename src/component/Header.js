@@ -1,5 +1,6 @@
 import React from 'react'
 import Search from './Search'
+import { Link } from "react-router-dom";
 
 const Header=() =>{
   return (
@@ -11,9 +12,14 @@ const Header=() =>{
         <div className="links">
           <ul>
             <li>
-              Guest 1
+              <Link to="#">Guest 1</Link>
             </li>
-            <li>Compain</li>
+            <li>
+              |
+            </li>
+            <li>
+              <Link to="#">Compain</Link>
+              </li>
           </ul>
         </div>
     </div>
